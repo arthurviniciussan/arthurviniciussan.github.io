@@ -1,0 +1,28 @@
+<section>
+        <div class="login">
+            <h1>Acesse sua conta</h1>
+            <p>Informe seu e-mail e senha para ter acesso à sua conta.</p>
+        </div>
+   
+            <form class="login-form" #formLogin="ngForm" (ngSubmit)="entrar()">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" autocomplete="email" placeholder="seu.email@exemplo.com" required [(ngModel)]="email">
+
+                <div class="login-senha">
+                    <label for="senha">Senha</label><a href="#">Esqueci minha senha</a>
+                </div>
+                <input type="password" name="senha" id="senha" autocomplete="current-password" placeholder="Senha Cadastrada" required [(ngModel)]="senha">
+                @if (erro) {
+                    <p role="alert">{{ erro }}</p>
+                }
+                <button type="submit" [disabled]="formLogin.invalid || verificando">
+                    {{ verificando ? 'Verificando...' : 'Entrar' }}
+                </button>
+            </form>
+            
+            
+            <div class="login-footer">
+                <p>Ainda não é cadastrado? <a routerLink="/cadastro">Cadastre-se</a></p>
+            </div>
+       
+    </section>

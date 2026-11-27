@@ -1,0 +1,81 @@
+<section class="etapas">
+  <div class="container etapas__lista">
+    <span class="etapa etapa--ativa"><span class="etapa__numero">1</span> Carrinho (Ativo)</span>
+    <span class="etapa"><span class="etapa__numero">2</span> Identificação</span>
+    <span class="etapa"><span class="etapa__numero">3</span> Entrega Especializada</span>
+    <span class="etapa"><span class="etapa__numero">4</span> Pagamento</span>
+  </div>
+</section>
+
+<div class="container conteudo">
+  <header class="conteudo__titulo">
+    <p class="selo">Cesto curado &amp; marcenaria exclusiva</p>
+    <h1>Carrinho de Compras</h1>
+  </header>
+  <a class="botao-voltar" routerLink="/">Voltar para o catálogo</a>
+
+  @if (erro) {
+    <p role="alert">{{ erro }}</p>
+  }
+  @if (sucesso) {
+    <p role="status">{{ sucesso }}</p>
+  }
+  @if (!authService.usuarioAtual) {
+    <p role="status">Para salvar e acessar seu carrinho, <a routerLink="/login">entre na sua conta</a>.</p>
+  }
+
+  <div class="grade">
+    <section class="cartao carrinho">
+      <header class="carrinho__cabecalho">
+        <h2 class="cartao__titulo">Seu Carrinho <span class="carrinho__contador">({{ listaItens.length }} itens)</span></h2>
+        <button type="button" class="link link--perigo" (click)="esvaziar()" [disabled]="listaItens.length === 0 || finalizando">Esvaziar carrinho</button>
+      </header>
+
+      <ul class="lista-itens">
+        @for (item of listaItens; track item.produtoId) {
+          <li class="item">
+            <div class="item__imagem">
+              <img [src]="item.produto?.imagem || '/assets/images/mesa.jpg'" [alt]="item.produto?.nome || 'Produto não encontrado'">
+            </div>
+
+            <div class="item__dados">
+              <h3 class="item__nome">{{ item.produto?.nome || 'Produto não encontrado' }}</h3>
+              @if (item.produto) {
+                <p class="item__estoque">Estoque: {{ item.produto.estoque }} unidades</p>
+              }
+              <div class="quantidade">
+                <button type="button" class="quantidade__botao" (click)="diminuir(item)" [disabled]="finalizando || pedidoRegistrado">&minus;</button>
+                <span class="quantidade__valor">{{ item.quantidade }}</span>
+                <button type="button" class="quantidade__botao" (click)="aumentar(item)" [disabled]="finalizando || pedidoRegistrado">+</button>
+              </div>
+            </div>
+
+            <div class="item__valores">
+              <p class="item__unitario">Unitário: {{ (item.produto?.preco || 0) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+              <p class="item__total">{{ (item.produto?.preco || 0) * item.quantidade | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+              <div class="item__acoes">
+                <button type="button" class="link" (click)="remover(item.produtoId)" [disabled]="finalizando || pedidoRegistrado">Remover</button>
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <aside class="resumo-lateral">
+      <section class="cartao resumo">
+        <header class="resumo__cabecalho">
+          <h2 class="cartao__titulo">Resumo do pedido</h2>
+          <span class="resumo__contagem">{{ calcularUnidades() }} unidades</span>
+        </header>
+        <div class="resumo__total">
+          <span>Total</span>
+          <strong>{{ calcularTotal() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+        </div>
+        <button type="button" class="botao--principal" (click)="finalizarCompra()" [disabled]="listaItens.length === 0 || finalizando || pedidoRegistrado || !authService.usuarioAtual">
+          {{ finalizando ? 'Finalizando...' : (pedidoRegistrado ? 'Pedido registrado' : 'Finalizar compra') }}
+        </button>
+      </section>
+    </aside>
+  </div>
+</div>

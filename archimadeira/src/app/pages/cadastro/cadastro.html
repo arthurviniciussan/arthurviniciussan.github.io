@@ -1,0 +1,188 @@
+<section>
+  <div class="cadastro">
+    <h1>Criar nova conta</h1>
+    <p>Cadastre-se para comprar móveis de qualidade com rapidez e segurança.</p>
+  </div>
+
+  <form class="cadastro-form" #formCadastro="ngForm" (ngSubmit)="salvar()">
+    <fieldset class="cadastro-bloco">
+      <legend>Dados pessoais</legend>
+
+      <label for="nome">Nome</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="nome"
+        id="nome"
+        autocomplete="given-name"
+        placeholder="Ex: Roberto"
+        required
+        [(ngModel)]="usuario.nome"
+      />
+
+      <label for="sobrenome">Sobrenome</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="sobrenome"
+        id="sobrenome"
+        autocomplete="family-name"
+        placeholder="Ex: Alencar Silva"
+        required
+        [(ngModel)]="usuario.sobrenome"
+      />
+
+      <label for="email">E-mail</label>
+      <input
+        class="input-simples"
+        type="email"
+        name="email"
+        id="email"
+        autocomplete="email"
+        placeholder="seu.email@exemplo.com"
+        required
+        [(ngModel)]="usuario.email"
+      />
+
+      <label for="cpf">CPF</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="cpf"
+        id="cpf"
+        inputmode="numeric"
+        placeholder="000.000.000-00"
+        required
+        [(ngModel)]="usuario.cpf"
+      />
+
+      <label for="dtNascimento">Data de nascimento</label>
+      <input
+        class="input-simples"
+        type="date"
+        name="dtNascimento"
+        id="dtNascimento"
+        autocomplete="bday"
+        required
+        [(ngModel)]="usuario.dtNascimento"
+      />
+    
+      <legend>Endereço de entrega</legend>
+
+      <label for="cep">CEP</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="cep"
+        id="cep"
+        inputmode="numeric"
+        autocomplete="postal-code"
+        placeholder="00000-000"
+        required
+        [(ngModel)]="usuario.cep"
+      />
+
+      <label for="logradouro">Rua / Avenida</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="logradouro"
+        id="logradouro"
+        autocomplete="address-line1"
+        placeholder="Ex: Av. Brigadeiro Faria Lima"
+        required
+        [(ngModel)]="usuario.logradouro"
+      />
+
+      <label for="numeroCasa">Número</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="numeroCasa"
+        id="numeroCasa"
+        placeholder="1234"
+        required
+        [(ngModel)]="usuario.numeroCasa"
+      />
+
+      <label for="complemento">Complemento (opcional)</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="complemento"
+        id="complemento"
+        autocomplete="address-line2"
+        placeholder="Apto 42, Bloco B"
+        [(ngModel)]="usuario.complemento"
+      />
+
+      <label for="bairro">Bairro</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="bairro"
+        id="bairro"
+        placeholder="Pinheiros"
+        required
+        [(ngModel)]="usuario.bairro"
+      />
+
+      <label for="cidade">Cidade</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="cidade"
+        id="cidade"
+        autocomplete="address-level2"
+        placeholder="São Paulo"
+        required
+        [(ngModel)]="usuario.cidade"
+      />
+
+      <label for="estado">Estado</label>
+      <input
+        class="input-simples"
+        type="text"
+        name="estado"
+        id="estado"
+        maxlength="2"
+        autocomplete="address-level1"
+        placeholder="SP"
+        required
+        [(ngModel)]="usuario.estado"
+      />
+      <label for="senha">Senha</label>
+    <input
+      class="input-simples"
+      id="senha"
+      name="senha"
+      type="password"
+      placeholder="Digite sua senha"
+      minlength="6"
+      required
+      [(ngModel)]="usuario.senha"
+    />
+    <label for="confirmarSenha">Confirmar senha</label>
+    <input
+      class="input-simples"
+      id="confirmarSenha"
+      name="confirmarSenha"
+      type="password"
+      placeholder="Confirme sua senha"
+      required
+      [(ngModel)]="confirmarSenha"
+    />
+    </fieldset>
+
+    @if (erro) {
+      <p role="alert">{{ erro }}</p>
+    }
+    <button type="submit" [disabled]="formCadastro.invalid || salvando">
+      {{ salvando ? 'Salvando...' : 'Finalizar cadastro' }}
+    </button>
+  </form>
+
+  <div class="cadastro-footer">
+    <p>Já tem uma conta? <a routerLink="/login">Entrar</a></p>
+  </div>
+</section>

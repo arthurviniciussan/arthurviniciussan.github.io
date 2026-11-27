@@ -1,0 +1,194 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "cpf": "12345678901",
+      "nome": "Ana",
+      "sobrenome": "Silva",
+      "dtNascimento": "2000-09-25",
+      "email": "ana.silva@example.com",
+      "cep": "01310-100",
+      "logradouro": "Avenida Paulista",
+      "numeroCasa": "1000",
+      "complemento": "Apto 42",
+      "bairro": "Bela Vista",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "senha": "usuario123",
+      "tipo": "usuario"
+    },
+    {
+      "cpf": "123123123.32",
+      "nome": "tutu",
+      "sobrenome": "morte",
+      "dtNascimento": "2026-02-24",
+      "email": "pirocagames@gemendo.com",
+      "cep": "04941080",
+      "logradouro": "Negocoi",
+      "numeroCasa": "67",
+      "complemento": "B",
+      "bairro": "casa da mae joana",
+      "cidade": "lugar",
+      "estado": "Sampa",
+      "id": 2,
+      "senha": "usuario123",
+      "tipo": "usuario"
+    },
+    {
+      "id": 67,
+      "cpf": "00000000000",
+      "nome": "Administrador",
+      "sobrenome": "Archimadeira",
+      "dtNascimento": "1990-01-01",
+      "email": "admin@admin.com",
+      "cep": "00000-000",
+      "logradouro": "Rua Administração Maneira",
+      "numeroCasa": "1",
+      "complemento": "",
+      "bairro": "Centro",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "senha": "admin123",
+      "tipo": "admin"
+    },
+    {
+      "cpf": "12312312343",
+      "nome": "Alfajor",
+      "sobrenome": "SS",
+      "dtNascimento": "2026-11-10",
+      "email": "alfajor@alfajor.com",
+      "cep": "04941080",
+      "logradouro": "rua do alfajor",
+      "numeroCasa": "67",
+      "complemento": "3",
+      "bairro": "lugar",
+      "cidade": "Sao paulo",
+      "estado": "Sao paulo",
+      "senha": "123",
+      "tipo": "usuario",
+      "id": 68
+    }
+  ],
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Sofá 3 Lugares Retrátil e Reclinável",
+      "descricao": "Sofá confortável de 3 lugares com assentos retráteis e encosto reclinável.",
+      "estoque": 7,
+      "preco": 5900,
+      "desconto": "10% OFF",
+      "imagem": "/assets/images/sofa3lugares.jpeg"
+    },
+    {
+      "id": 2,
+      "nome": "Sofá Retrátil Aramis 2 lugares - 2,90m",
+      "descricao": "Sofá modelo Aramis de 2 lugares com abertura retrátil e 2,90m de largura.",
+      "estoque": 5,
+      "preco": 5400,
+      "desconto": "8% OFF",
+      "imagem": "/assets/images/sofa2lugares.jpeg"
+    },
+    {
+      "id": 3,
+      "nome": "Cama de Casal Madeira Maciça",
+      "descricao": "Cama de casal resistente fabricada em madeira maciça nobre.",
+      "estoque": 2,
+      "preco": 4483,
+      "desconto": "MADEIRA NOBRE",
+      "imagem": "/assets/images/camaNogueira.jpg"
+    },
+    {
+      "id": 4,
+      "nome": "Mesa de jantar redonda 6 lugares",
+      "descricao": "Mesa de jantar com tampo redondo ideal para acomodar até 6 pessoas.",
+      "estoque": 12,
+      "preco": 1500,
+      "desconto": "30% OFF",
+      "imagem": "/assets/images/mesa.jpg"
+    },
+    {
+      "nome": "guarda-roupa",
+      "descricao": "bocud",
+      "estoque": 76,
+      "preco": 5,
+      "imagem": "/assets/images/camaNogueira.jpg",
+      "id": 5
+    },
+    {
+      "nome": "tutu",
+      "descricao": "tuttu bum bum",
+      "estoque": 2,
+      "preco": 67,
+      "imagem": "/assets/images/mesa-jantar.png",
+      "id": 6
+    }
+  ],
+  "carrinhos": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "itens": []
+    }
+  ],
+  "pedidos": [
+    {
+      "usuarioId": 1,
+      "usuarioEmail": "ana.silva@example.com",
+      "data": "2026-11-27T01:26:32.136Z",
+      "produtos": [
+        {
+          "produtoId": 1,
+          "nome": "Sofá 3 Lugares Retrátil e Reclinável",
+          "preco": 5900,
+          "quantidade": 1,
+          "estoque": 10,
+          "imagem": "/assets/images/sofa3lugares.jpeg"
+        },
+        {
+          "produtoId": 2,
+          "nome": "Sofá Retrátil Aramis 2 lugares - 2,90m",
+          "preco": 5400,
+          "quantidade": 1,
+          "estoque": 8,
+          "imagem": "/assets/images/sofa2lugares.jpeg"
+        }
+      ],
+      "total": 11300,
+      "id": 1
+    },
+    {
+      "usuarioId": 1,
+      "usuarioEmail": "ana.silva@example.com",
+      "data": "2026-11-27T02:11:36.819Z",
+      "produtos": [
+        {
+          "produtoId": 1,
+          "nome": "Sofá 3 Lugares Retrátil e Reclinável",
+          "preco": 5900,
+          "quantidade": 2,
+          "estoque": 9,
+          "imagem": "/assets/images/sofa3lugares.jpeg"
+        },
+        {
+          "produtoId": 2,
+          "nome": "Sofá Retrátil Aramis 2 lugares - 2,90m",
+          "preco": 5400,
+          "quantidade": 2,
+          "estoque": 7,
+          "imagem": "/assets/images/sofa2lugares.jpeg"
+        },
+        {
+          "produtoId": 3,
+          "nome": "Cama de Casal Madeira Maciça",
+          "preco": 4483,
+          "quantidade": 3,
+          "estoque": 5,
+          "imagem": "/assets/images/camaNogueira.jpg"
+        }
+      ],
+      "total": 36049,
+      "id": 2
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

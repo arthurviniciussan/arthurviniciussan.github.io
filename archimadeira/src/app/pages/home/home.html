@@ -1,0 +1,73 @@
+<main class="home-container">
+  
+  <section class="hero-banner">
+    <div class="hero-content">
+      <span class="badge">COLEÇÃO EXCLUSIVA 2026</span>
+      <h1>MÓVEIS DE QUALIDADE A UM CLIQUE DE VOCÊ</h1>
+      <p>Design autoral, madeira maciça certificada e acabamento premium para transformar a atmosfera do seu lar com conforto inigualável.</p>
+      <a class="btn-primary" href="#produtos">CONFIRA ➔</a>
+    </div>
+  </section>
+
+  <section class="section-container">
+    <div class="section-header">
+      <h2>Navegue por Ambientes</h2>
+    </div>
+    
+    <div class="grid-categorias">
+      <div class="card-categoria" *ngFor="let cat of categorias">
+        <img [src]="cat.imagem" [alt]="cat.nome" class="img-placeholder" />
+        <h3>{{ cat.nome }}</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-container">
+    <div class="section-header" id="produtos">
+      <h2>Listagem de Produtos</h2>
+      <a routerLink="/carrinho" class="link-catalogo">Ver carrinho</a>
+    </div>
+
+    @if (erroProdutos) {
+      <p role="alert">{{ erroProdutos }}</p>
+    }
+    @if (erro) {
+      <p role="alert">
+        {{ erro }}
+        @if (!authService.usuarioAtual) {
+          <a routerLink="/login">Entrar</a>
+        }
+      </p>
+    }
+    @if (carregandoProdutos) {
+      <p role="status">Carregando produtos...</p>
+    } @else if (produtos.length === 0 && !erroProdutos) {
+      <p role="status">Nenhum produto disponível no momento.</p>
+    } @else {
+      <div class="grid-produtos">
+        @for (prod of produtos; track prod.id) {
+          <article class="card-produto">
+            <img class="img-placeholder-produto" [src]="prod.imagem" [alt]="prod.nome">
+
+            <div class="produto-info">
+              <h3>{{ prod.nome }}</h3>
+              <p class="descricao">{{ prod.descricao }}</p>
+              <p class="preco">{{ prod.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+              <button
+                class="btn-secundary"
+                type="button"
+                (click)="adicionarAoCarrinho(prod)"
+                [disabled]="prod.estoque < 1"
+                [attr.aria-label]="produtosAdicionados.has(prod.id) ? 'Adicionado ao carrinho' : 'Adicionar ' + prod.nome + ' ao carrinho'"
+                [title]="prod.estoque < 1 ? 'Produto sem estoque' : produtosAdicionados.has(prod.id) ? 'Adicionado ao carrinho' : 'Adicionar ao carrinho'"
+              >
+                {{ produtosAdicionados.has(prod.id) ? 'Adicionado' : 'Adicionar ao Carrinho' }}
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </section>
+
+</main>
